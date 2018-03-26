@@ -47,14 +47,8 @@ namespace motor {
      * The user can select the 8 steering gear controller.
      */
     export enum Servos {
-        S1 = 0x08,
-        S2 = 0x07,
-        S3 = 0x06,
-        S4 = 0x05,
-        S5 = 0x04,
-        S6 = 0x03,
-        S7 = 0x02,
-        S8 = 0x01
+        S1 = 0x03,
+        S2 = 0x02,
     }
 
     /**
@@ -102,6 +96,26 @@ namespace motor {
 
     function set_brightness(led: number, duty_cycle: number): void { 
         write_reg(PCA9634_REG_PWM0 + led, duty_cycle)
+    }
+
+
+    /**
+	 * Steering gear control function.
+     * S1~S8.
+     * 0°~180°.
+	*/
+    //% blockId=motor_servo block="Servo|%index|degree|%degree"
+    //% weight=100
+    //% degree.min=0 degree.max=180
+    //% index.fieldEditor="gridpicker" index.fieldOptions.columns=4
+    export function servo(index: Servos, degree: number): void {
+        if (!initialized) {
+            initPCA9634()
+        }
+        // 100hz
+        let v_us = (degree * 10 + 600) // 0.6ms ~ 2.4ms
+        let value = v_us * 255 / (1000000 / 100)
+        //setPwm(index + 7, 0, value)
     }
 
 
