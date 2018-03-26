@@ -1,0 +1,18 @@
+{
+    "name": "boson",
+    "version": "0.0.0",
+    "description": "MIT",
+    "license": "mit",
+    "dependencies": {
+        "core": "*",
+        "radio": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": false
+}
