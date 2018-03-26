@@ -98,6 +98,10 @@ namespace motor {
         initialized = true
     }
 
+    function set_brightness(led: number, duty_cycle: number): void { 
+        write_reg(PCA9634_REG_PWM0 + led, duty_cycle)
+    }
+
 
     /**
 	 * Execute a motor
@@ -115,21 +119,21 @@ namespace motor {
         }
         switch (index) { 
             case Motors.M1: { 
-                if (direction == Dir.CCW) {
-                    write_reg(4, 255)
-                    write_reg(5, 255-speed)
-                } else if (direction == Dir.CW) { 
-                    write_reg(4, 255-speed)
-                    write_reg(5, 255)
+                if (direction == Dir.CW) {
+                    set_brightness(4, 255-speed)
+                    set_brightness(5, 255)
+                } else if (direction == Dir.CCW) { 
+                    set_brightness(4, 255)
+                    set_brightness(5, 255-speed)
                 }
             } break;
             case Motors.M2: {
-                if (direction == Dir.CCW) {
-                    write_reg(6, 255)
-                    write_reg(7, 255-speed)
-                } else if (direction == Dir.CW) { 
-                    write_reg(6, 255-speed)
-                    write_reg(7, 255)
+                if (direction == Dir.CW) {
+                    set_brightness(6, 255-speed)
+                    set_brightness(7, 255)
+                } else if (direction == Dir.CCW) { 
+                    set_brightness(6, 255)
+                    set_brightness(7, 255-speed)
                 }
             } break;
         }
