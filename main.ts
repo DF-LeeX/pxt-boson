@@ -115,21 +115,21 @@ namespace motor {
         }
         switch (index) { 
             case Motors.M1: { 
-                if (direction == Dir.CW) {
-                    write_reg(4, 0)
-                    write_reg(5, speed)
-                } else if (direction == Dir.CCW) { 
-                    write_reg(4, speed)
-                    write_reg(5, 0)
+                if (direction == Dir.CCW) {
+                    write_reg(4, 255)
+                    write_reg(5, 255-speed)
+                } else if (direction == Dir.CW) { 
+                    write_reg(4, 255-speed)
+                    write_reg(5, 255)
                 }
             } break;
             case Motors.M2: {
-                if (direction == Dir.CW) {
-                    write_reg(6, 0)
-                    write_reg(7, speed)
-                } else if (direction == Dir.CCW) { 
-                    write_reg(6, speed)
-                    write_reg(7, 0)
+                if (direction == Dir.CCW) {
+                    write_reg(6, 255)
+                    write_reg(7, 255-speed)
+                } else if (direction == Dir.CW) { 
+                    write_reg(6, 255-speed)
+                    write_reg(7, 255)
                 }
             } break;
         }
