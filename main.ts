@@ -3,6 +3,7 @@
  */
 //% weight=10 color=#DF6721 icon="\uf013" block="DF-Driver"
 namespace motor {
+    const PCA9634_ADDR = 0x00
     const PCA9634_REG_MODE1	=	0x00		// Mode register 1
     const PCA9634_REG_MODE2	=	0x01		// Mode register 2
     const PCA9634_REG_PWM0	=	0x02		// brightness control LED0
@@ -84,10 +85,11 @@ namespace motor {
 
     let initialized = false
 
-    function write_reg(addr: number, value: number) {
-        let buf = pins.createBuffer(1)
-        buf[0] = value
-        pins.i2cWriteBuffer(addr, buf)
+    function write_reg(reg: number, value: number) {
+        let buf = pins.createBuffer(2)
+        buf[0] = reg
+        buf[1] = value
+        pins.i2cWriteBuffer(PCA9634_ADDR, buf)
     }
 
     function initPCA9634(): void {
@@ -117,7 +119,6 @@ namespace motor {
         if (!initialized) {
             initPCA9634()
         }
-        basic.pause(1000)
         switch (index) { 
             case Motors.M1: { 
                 if (direction == Dir.CW) {
