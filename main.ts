@@ -120,20 +120,20 @@ namespace motor {
         switch (index) { 
             case Motors.M1: { 
                 if (direction == Dir.CW) {
-                    set_brightness(4, 255-speed)
-                    set_brightness(5, 255)
+                    set_brightness(4, speed)
+                    set_brightness(5, 0)
                 } else if (direction == Dir.CCW) { 
-                    set_brightness(4, 255)
-                    set_brightness(5, 255-speed)
+                    set_brightness(4, 0)
+                    set_brightness(5, speed)
                 }
             } break;
             case Motors.M2: {
                 if (direction == Dir.CW) {
-                    set_brightness(6, 255-speed)
-                    set_brightness(7, 255)
+                    set_brightness(6, speed)
+                    set_brightness(7, 0)
                 } else if (direction == Dir.CCW) { 
-                    set_brightness(6, 255)
-                    set_brightness(7, 255-speed)
+                    set_brightness(6, 0)
+                    set_brightness(7, speed)
                 }
             } break;
         }
