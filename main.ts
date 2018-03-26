@@ -117,6 +117,7 @@ namespace motor {
         if (!initialized) {
             initPCA9634()
         }
+        basic.pause(1000)
         switch (index) { 
             case Motors.M1: { 
                 if (direction == Dir.CW) {
